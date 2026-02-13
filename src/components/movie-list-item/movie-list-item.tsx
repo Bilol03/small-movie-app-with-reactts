@@ -1,10 +1,10 @@
 import './movie-list-item.css'
 
-export function MovieListItem() {
+export function MovieListItem({movieName, rate}: {movieName: string, rate: number}) {
 	return (
 		<li className="list-group-item d-flex justify-content-between">
-			<span className='list-group-item-label'>Empire of Osman</span>
-            <input type="number" className='list-group-item-input' defaultValue={998} />
+			<span className='list-group-item-label'>{movieName}</span>
+            <input type="number" className='list-group-item-input' defaultValue={rate} />
             <div className='d-flex justify-content-center align-items-center'>
                 <button type="button" className='btn-cookie btn-sm'>
                     <i className='fas fa-cookie'></i>
