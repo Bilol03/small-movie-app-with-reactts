@@ -9,21 +9,29 @@ import './app.css'
 export function App() {
 	const data = [
 		{
+			id: 1,
 			name: 'Terminator',
 			views: 102,
+			favourite: true,
 		},
 		{
+			id: 2,
 			name: 'The Godfather',
 			views: 98,
+			favourite: false,
 		},
 		{
+			id: 3,
 			name: 'The Dark Knight',
 			views: 120,
+			favourite: false,
 		},
-        {
-            name: 'Pulp Fiction',
-            views: 110,
-        }
+		{
+			id: 4,
+			name: 'Pulp Fiction',
+			views: 110,
+			favourite: true,
+		},
 	]
 	return (
 		<div className="app font-monospace">
