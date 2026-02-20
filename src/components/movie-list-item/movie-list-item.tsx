@@ -1,12 +1,14 @@
 import { Component } from 'react'
 import './movie-list-item.css'
 
+
 export class MovieListItem extends Component {
     state: any
 	constructor(props: any) {
 		super(props)
 		this.state = {
 			favourite: false,
+            like: false
 		}
 	}
 	onFavourite = () => {
@@ -15,15 +17,23 @@ export class MovieListItem extends Component {
 			favourite: !favourite,
 		})
 	}
+	onLike = () => {
+		const { like }: any = this.state
+		this.setState({
+			like: !like,
+		})
+	}
+
+
 
 	render() {
 		const { name, views, id }: any = this.props
-		const { favourite }: any = this.state
-		console.log(id)
+		const { favourite, like }: any = this.state
+
 		return (
 			<li
-				className={`list-group-item d-flex justify-content-between ${favourite && 'favourite'}`}>
-				<span className="list-group-item-label">{name}</span>
+				className={`list-group-item d-flex justify-content-between ${favourite && 'favourite'} ${like && 'like'}`}>
+				<span onClick={this.onLike} className="list-group-item-label">{name}</span>
 				<input
 					id={id}
 					type="number"
