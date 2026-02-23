@@ -41,10 +41,21 @@ export class App extends Component {
 		}
 	}
 	onDelete = (id: number) => {
-		const { data } = this.state
+		this.setState(({ data }: any) => ({
+			data: data.filter((el: any) => el.id != id),
+		}))
+	}
 
-		data.filter((el:any) => el.id != id)
-		console.log(data)
+	addForm = (e: any, item: any) => {
+		e.preventDefault()
+		const { name, view }: any = item
+		console.log(item)
+		this.setState(({ data }) => ({
+			data: data.push({
+				name,
+				view,
+			}),
+		}))
 	}
 	render() {
 		const { data } = this.state
@@ -57,7 +68,7 @@ export class App extends Component {
 						<AppFilter />
 					</div>
 					<MovieList data={data} onDelete={this.onDelete} />
-					<MoviesAddForm />
+					<MoviesAddForm addForm={this.addForm} />
 				</div>
 			</div>
 		)

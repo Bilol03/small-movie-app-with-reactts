@@ -16,35 +16,32 @@ export class MoviesAddForm extends Component {
 			[e.target.view]: e.target.value,
 		})
 	}
-	onAddMovie = () => {
-		console.log(this.state.name)
-	}
+
 	render() {
-		const {name, view}:any = this.state
+		const { name, view }: any = this.state
+		const { addForm }: any = this.props
+
 		return (
 			<div className="movie-add-form">
 				<h3>Yangi kino qo'shish</h3>
-				<form className="add-form d-flex">
+				<form className="add-form d-flex" onSubmit={(e) => addForm(e, {name, view})}>
 					<input
 						type="text"
 						name="name"
-						onChange={this.onAddMovie}
 						className="form-control new-post-label"
 						placeholder="Qaysi kino"
-						value={name}
+
 					/>
 					<input
 						type="number"
 						name="view"
-						onChange={this.onAddMovie}
 						className="form-control new-post-label"
 						placeholder="Necha marotaba korilgan"
-						value={view}
 
 					/>
 					<button
 						type="submit"
-						onSubmit={this.onAddMovie}
+
 						className="btn btn-outline-dark">
 						Qo'shish
 					</button>
