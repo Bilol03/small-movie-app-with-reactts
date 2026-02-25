@@ -43,6 +43,7 @@ export class App extends Component {
 					like: true,
 				},
 			],
+			term: ''
 		}
 	}
 	onDelete = (id: any) => {
@@ -77,18 +78,32 @@ export class App extends Component {
 			}
 		})
 	}
+
+	onSearch =(arr: any, term: any) => {
+		if(term.length === 0) return arr
+		return arr.filter((el: any) => el.name.toLowerCase().indexOf(term.toLowerCase()) > -1)
+	}
+
+	updateTermHandler = (term: any)  => {
+		console.log(term)
+		this.setState( {
+			term
+		})
+	}
 	render() {
-		const { data } = this.state
+		const { data, term } = this.state
+		const visibleData = this.onSearch(data, term)
+
 		return (
 			<div className="app font-monospace">
 				<div className="content">
-					<AppInfo />
+					<AppInfo data={visibleData}/>
 					<div className="search-panel">
-						<SearchPanel />
+						<SearchPanel updateTermHandler={this.updateTermHandler}/>
 						<AppFilter />
-					</div>
+					</div> 
 					<MovieList
-						data={data}
+						data={visibleData}
 						onDelete={this.onDelete}
 						onLike={this.onLike}
 						onFavourite={this.onFavourite}
