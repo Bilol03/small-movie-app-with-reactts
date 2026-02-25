@@ -27,13 +27,12 @@ export class MovieListItem extends Component {
 
 
 	render() {
-		const { id, name, views, onDelete }: any = this.props
-		const { favourite, like }: any = this.state
+		const { id, name, views, like, favourite, onDelete, onLike, onFavourite }: any = this.props
 
 		return (
 			<li
 				className={`list-group-item d-flex justify-content-between ${favourite && 'favourite'} ${like && 'like'}`}>
-				<span onClick={this.onLike} className="list-group-item-label">{name}</span>
+				<span onClick={onLike} className="list-group-item-label">{name}</span>
 				<input
 					id={id}
 					type="number"
@@ -44,7 +43,7 @@ export class MovieListItem extends Component {
 					<button
 						type="button"
 						className="btn-cookie btn-sm"
-						onClick={this.onFavourite}>
+						onClick={onFavourite}>
 						<i className="fas fa-cookie"></i>
 					</button>
 					<button type="button" className="btn-trash btn-sm" onClick={onDelete}>

@@ -8,13 +8,15 @@ class MovieList extends Component {
 	}
 
 	render() {
-		const { data, onDelete }: any = this.props
+		const { data, onDelete, onLike, onFavourite}: any = this.props
 		return (
 			<div className="movie-list">
 				{data.map((item: any) => (
 					<MovieListItem
 						{...item}
 						onDelete={() => onDelete(item.id)}
+						onLike={() => onLike(item.id)}
+						onFavourite={() => onFavourite(item.id)}
 					/>
 				))}
 			</div>
