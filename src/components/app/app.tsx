@@ -3,6 +3,7 @@ import { AppInfo } from '../app-info/app-info'
 import { MoviesAddForm } from '../movie-add-form/movie-add-form'
 import MovieList from '../movie-list/movie-list'
 import { SearchPanel } from '../search-panel/search-panel'
+import {v4 as uuid4v} from 'uuid'
 
 import { Component } from 'react'
 import './app.css'
@@ -46,15 +47,10 @@ export class App extends Component {
 		}))
 	}
 
-	addForm = (e: any, item: any) => {
-		e.preventDefault()
-		const { name, view }: any = item
-		console.log(item)
-		this.setState(({ data }) => ({
-			data: data.push({
-				name,
-				view,
-			}),
+	addForm = (item: any) => {
+		const {name, views} = item
+		this.setState(({ data }:any) => ({
+			data: [...data, {name, views: views, id: uuid4v()}]
 		}))
 	}
 	render() {

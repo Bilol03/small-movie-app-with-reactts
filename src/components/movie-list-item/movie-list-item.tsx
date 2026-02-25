@@ -27,7 +27,7 @@ export class MovieListItem extends Component {
 
 
 	render() {
-		const { name, views, id, onDelete }: any = this.props
+		const { id, name, views, onDelete }: any = this.props
 		const { favourite, like }: any = this.state
 
 		return (
