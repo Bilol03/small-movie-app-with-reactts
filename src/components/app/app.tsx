@@ -17,7 +17,7 @@ export class App extends Component {
 				{
 					id: 1,
 					name: 'Terminator',
-					views: 102,
+					views: 1020,
 					favourite: true,
 					like: true,
 				},
@@ -43,7 +43,8 @@ export class App extends Component {
 					like: true,
 				},
 			],
-			term: ''
+			term: '',
+			filter: '',
 		}
 	}
 	onDelete = (id: any) => {
@@ -70,7 +71,7 @@ export class App extends Component {
 	}
 
 	onFavourite = (id: any) => {
-			this.setState(({ data }: any) => {
+		this.setState(({ data }: any) => {
 			return {
 				data: data.map((el: any) =>
 					el.id == id ? { ...el, favourite: !el.favourite } : el,
@@ -79,31 +80,54 @@ export class App extends Component {
 		})
 	}
 
-	onSearch =(arr: any, term: any) => {
-		if(term.length === 0) return arr
-		return arr.filter((el: any) => el.name.toLowerCase().indexOf(term.toLowerCase()) > -1)
+	onSearch = (arr: any, term: any) => {
+		if (term.length === 0) return arr
+		return arr.filter(
+			(el: any) => el.name.toLowerCase().indexOf(term.toLowerCase()) > -1,
+		)
 	}
 
-	updateTermHandler = (term: any)  => {
-		console.log(term)
-		this.setState( {
-			term
+	onFilter = (arr: any, filter: any) => {
+		switch (filter) {
+			case 'popular':
+				return arr.filter((el: any) => el.like)
+			case 'mostViewers':
+				return arr.filter((el: any) => el.views > 800)
+			default:
+				return arr
+		}
+	}
+
+	updateTermHandler = (term: any) => {
+		this.setState({
+			term,
+		})
+	}
+
+	updateFilterHandler = (filter: any) => {
+		this.setState({
+			filter,
 		})
 	}
 	render() {
-		const { data, term } = this.state
+		const { data, term, filter } = this.state
 		const visibleData = this.onSearch(data, term)
+		const filteredData = this.onFilter(visibleData, filter)
 
 		return (
 			<div className="app font-monospace">
 				<div className="content">
-					<AppInfo data={visibleData}/>
+					<AppInfo data={filteredData} />
 					<div className="search-panel">
-						<SearchPanel updateTermHandler={this.updateTermHandler}/>
-						<AppFilter />
-					</div> 
+						<SearchPanel
+							updateTermHandler={this.updateTermHandler}
+						/>
+						<AppFilter
+							updateFilterHandler={this.updateFilterHandler}
+						/>
+					</div>
 					<MovieList
-						data={visibleData}
+						data={filteredData}
 						onDelete={this.onDelete}
 						onLike={this.onLike}
 						onFavourite={this.onFavourite}

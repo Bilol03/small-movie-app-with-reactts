@@ -7,7 +7,7 @@ export class MoviesAddForm extends Component {
 		super(props)
 		this.state = {
 			name: '',
-			views: 'f',
+			views: '',
 		}
 	}
 	onChangeInput = (e: any) => {
