@@ -1,6 +1,11 @@
 import { Component } from 'react'
 import './app-filter.css'
 
+const btnsArr = [
+	{ name: 'all', label: 'Barchasi' },
+	{ name: 'mostViewers', label: "Ko'rilgan" },
+	{ name: 'popular', label: 'Mashxur kinolar' },
+]
 export class AppFilter extends Component {
 	constructor(props: any) {
 		super(props)
@@ -13,24 +18,16 @@ export class AppFilter extends Component {
 	render() {
 		return (
 			<div className="btn-group">
-				<button
-					onClick={(e: any) => this.onChoose(e)}
-					className="btn btn-dark"
-					name="all">
-					Barchasi
-				</button>
-				<button
-					onClick={(e: any) => this.onChoose(e)}
-					className="btn btn-outline-dark"
-					name="mostViewers">
-					Ko'rilgan
-				</button>
-				<button
-					onClick={(e: any) => this.onChoose(e)}
-					className="btn btn-outline-dark"
-					name="popular">
-					Yaxshi
-				</button>
+				{btnsArr.map((btn) => {
+					return (
+						<button
+							onClick={(e: any) => this.onChoose(e)}
+							className="btn btn-dark"
+							name={btn.name}>
+							{btn.label}
+						</button>
+					)
+				})}
 			</div>
 		)
 	}

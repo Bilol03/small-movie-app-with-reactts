@@ -17,7 +17,7 @@ export class App extends Component {
 				{
 					id: 1,
 					name: 'Terminator',
-					views: 1020,
+					views: 102,
 					favourite: true,
 					like: true,
 				},
