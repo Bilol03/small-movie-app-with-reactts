@@ -12,17 +12,19 @@ export class AppFilter extends Component {
 	}
 
 	onChoose = (e: any) => {
-		const { updateFilterHandler }: any = this.props
+		const {  updateFilterHandler }: any = this.props
 		updateFilterHandler(e.target.name)
 	}
 	render() {
+		const { filter }: any = this.props
 		return (
 			<div className="btn-group">
 				{btnsArr.map((btn) => {
 					return (
 						<button
 							onClick={(e: any) => this.onChoose(e)}
-							className="btn btn-dark"
+							key={btn.name}
+							className={filter == btn.name ? 'btn btn-dark' : 'btn'}
 							name={btn.name}>
 							{btn.label}
 						</button>

@@ -123,6 +123,7 @@ export class App extends Component {
 							updateTermHandler={this.updateTermHandler}
 						/>
 						<AppFilter
+							filter={filter}
 							updateFilterHandler={this.updateFilterHandler}
 						/>
 					</div>
